@@ -1,16 +1,16 @@
+
 <div class="card" style="max-width: 800px; margin: auto;">
   <div class="row g-0">
     <div class="col-md-6 d-flex justify-content-center align-items-center">
-      <img [src]="product.image" [alt]="product.title" class="img-fluid" style="max-height: 300px; object-fit: contain;">
+      <img [src]="'https://image.tmdb.org/t/p/w500' + series.poster_path" [alt]="series.name" class="img-fluid" style="max-height: 300px; object-fit: contain;">
     </div>
     <div class="col-md-6">
       <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.description }}</p>
+        <h5 class="card-title">{{ series.name }}</h5>
+        <p class="card-text">{{ series.overview }}</p>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Price: ${{ product.price }}</li>
-          <li class="list-group-item">Category: {{ product.category }}</li>
-          <li class="list-group-item">Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)</li>
+          <li class="list-group-item">First Air Date: {{ series.first_air_date }}</li>
+          <li class="list-group-item">Rating: {{ series.vote_average }} ({{ series.vote_count }} reviews)</li>
         </ul>
       </div>
     </div>

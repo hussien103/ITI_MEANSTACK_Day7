@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { Product } from '../../services/products';
-import { ProductsService } from '../../services/products.service';
+import { SingleSeries } from '../../models/ISeries';
+import {  TvService } from '../../services/tv-series.service';
 import { OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -9,15 +12,26 @@ import { OnInit } from '@angular/core';
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
+
 export class ProductDetailsComponent implements OnInit {
-  public product!: Product; // Added definite assignment assertion
-  private id: number = 15;
-  constructor(private productService: ProductsService) {
+  public series!: SingleSeries; // Added definite assignment assertion
+  private id!: number;
+  private route!: ActivatedRoute; // Declare route
+
+  constructor(private tvService: TvService, route: ActivatedRoute) { // Inject ActivatedRoute
+    this.route = route; // Assign to the class property
   }
-  
+  //when creating the class and the html is loaded it will be invoked
   ngOnInit() {
-    this.productService.getProductDetails(this.id).subscribe((data) => {
-      this.product = data;
+    this.id = Number(this.route.snapshot.paramMap.get('id'));
+
+     this.tvService.getSeriesByID(this.id).subscribe(data => {
+       this.series = data;
+
+       console.log(data)
+
     });
+
   }
+
 }

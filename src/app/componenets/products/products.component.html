@@ -1,20 +1,24 @@
 
-<div class="container">
-    <h1 class="mb-4">Products List</h1>
-    <div class="row">
-        @for(product of products; track product.id){
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <img [src]="product.image" [alt]="product.title" class="card-img-top  product-image">
-                <div class="card-body">
-                    <h5 class="card-title">{{ product.title }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text"><strong>Price:</strong> ${{ product.price }}</p>
-                    <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
-                    <p class="card-text"><strong>Rating:</strong> {{ product.rating.rate }} ({{ product.rating.count }} reviews)</p>
+
+            <div class="container">
+                <h1 class="mb-4">TV Series List</h1>
+                <div class="row">
+                    @for(series of tvList.results; track series.id){
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <a [routerLink]="['/product-details', series.id]" routerLinkActive="active">
+                                    <img [src]="'https://image.tmdb.org/t/p/w500' + series.poster_path" [alt]="series.name" class="card-img-top product-image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ series.name }}</h5>
+                                        <p class="card-text">{{ series.overview }}</p>
+                                        <p class="card-text"><strong>First Air Date:</strong> {{ series.first_air_date }}</p>
+                                        <p class="card-text"><strong>Rating:</strong> {{ series.vote_average }} ({{ series.vote_count }} reviews)</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                    </div>
                 </div>
-            </div>
-        </div>
-        }
-    </div>
-</div>
+            
+            

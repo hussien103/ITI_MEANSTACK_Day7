@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
-import { ProductsService } from '../../services/products.service';
-import { Product } from '../../services/products';
+import { TvService} from '../../services/tv-series.service';
+import { Series } from '../../models/ISeries';
 import { OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
 export class ProductsComponent implements OnInit {
-  products:Product[]=[]
-  constructor(private productService:ProductsService){}
+  tvList!:Series
+  constructor(private productService:TvService){}
 
   ngOnInit(){
-    this.productService.getProducts().subscribe((data)=>{
-      this.products=data
+    this.productService.getTvList().subscribe((data)=>{
+      console.log(data);
+      this.tvList = data 
     })
 
   }
